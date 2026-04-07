@@ -78,6 +78,13 @@ def setup(
     if intercept_stdlib:
         logging.basicConfig(handlers=[InterceptHandler()], level=0, force=True)
 
+        # Explicitly intercept loggers that configure their own handlers
+        # (uvicorn sets up its own handlers, bypassing the root interceptor)
+        for name in ("uvicorn", "uvicorn.access", "uvicorn.error"):
+            stdlib_logger = logging.getLogger(name)
+            stdlib_logger.handlers = [InterceptHandler()]
+            stdlib_logger.propagate = False
+
     logger.info(
         "stacksniper initialized",
         app_name=app_name,
