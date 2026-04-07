@@ -1,0 +1,7 @@
+# Ruff baseline — extends default E+F with silent-swallow detection.
+
+line-length = 120
+
+[lint]
+select = ["E", "F", "S110"]
+ignore = ["E501"]  # Line length enforced by formatter, not linter

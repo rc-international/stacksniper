@@ -1,0 +1,20 @@
+[project]
+name = "stacksniper"
+version = "0.2.0"
+description = "Structured JSONL logging for automated code healers — loguru-powered"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["loguru>=0.7.0"]
+
+[dependency-groups]
+dev = [
+    "bandit>=1.9.0",
+    "duckdb>=1.5.1",
+    "mypy>=1.15.0",
+    "pytest>=8.0.0",
+    "ruff>=0.14.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
